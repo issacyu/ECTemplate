@@ -1,0 +1,46 @@
+﻿<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<link href="~/Content/Custom/product.css" rel="stylesheet">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet">
+<link href="~Content/SideBar.css" rel="stylesheet" />
+
+@model ECTemplate.WebUI.Models.ProductsListViewModel
+
+<div id="product">
+    @foreach (var product in Model.Products)
+    {
+        @Html.Partial("ProductSummary", product)
+    }
+</div>
+
+@*@* The normal bootstrap modal with out any content in the modal-content div. Note that the id matches the data_target from the link*@
+<div id="modal-container" class="modal fade product_view" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div id="modal-content" class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Category", new { page = x, category = Model.CurrentCategory }))
+        </div>
+    </div>
+</div>
+
+@section scripts 
+{
+    @* The normal bootstrap behavior is to only grab the content for the modal once, if you need to pull in different partial views then the data on the modal will have to be cleared.*@
+    <script type="text/javascript">
+        $(function () {
+            var emptyModalContent = function () {
+                $('#modal-container').removeData('bs.modal').find('.modal-content').empty();
+            };
+
+            $('#modal-container').on('hidden.bs.modal', function () {
+                emptyModalContent();
+            });
+    </script>
+}

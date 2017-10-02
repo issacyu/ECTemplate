@@ -1,0 +1,28 @@
+﻿@model ECTemplate.Domain.Entities.Product
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<link href="~/Content/Custom/product.css" rel="stylesheet">
+
+<div class="modal-header">
+    <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+    <h3 class="modal-title">@Model.Name</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6 product_img">
+            @if (Model.ImageData != null)
+            {
+                <img class="img-responsive" src="@Url.Action("GetImage", "Product", new { Model.ProductID })" />
+            }
+        </div>
+        <div class="col-md-6 product_content">
+            <p>@Model.Description</p>
+            <h3 class="cost"> @Model.Price.ToString("c") </h3>
+            <div class="space-ten"></div>
+            <div class="btn-ground">
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("AddToCart", "Cart", new { ProductId = Model.ProductID})'"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</div>

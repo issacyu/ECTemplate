@@ -1,0 +1,104 @@
+﻿@model ECTemplate.Domain.Entities.Product
+
+@{ 
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    @*<link href="~/Content/shop-homepage.css" rel="stylesheet">*@
+    <link href="~/Content/Custom/ProductDetail.css" rel="stylesheet">
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/ProductDetail.js"></script>
+
+
+</head>
+
+@*@Html.Action("Navigation", "Nav")*@
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                <div class="caption-full">
+                    <h4 class="pull-right">@Model.Price.ToString("c")</h4>
+                    <h4><a href="#">@Model.Name</a></h4>
+                    <div class="text-center">
+                        @using (Ajax.BeginForm("AddToCart", "Cart", new AjaxOptions { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }))
+                        {
+                            @Html.Label("Quantity:")
+                            @Html.TextBox("quantity", 1, new { @class = "input-sm" })
+                            @Html.Hidden(Request.Url.PathAndQuery)
+                            @Html.HiddenFor(Model => Model.ProductID)
+                            <input class="btn btn-primary" type="submit" value="Add to cart" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <h4>Description:</h4>
+            <p>@Model.Description</p>
+        </div>
+    </div>
+</div>*@
+@Html.Action("Navigation", "Nav")
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 item-photo">
+            @if (Model.ImageData != null)
+            {
+                <img class="img-responsive" src="@Url.Action("GetImage", "Product", new { Model.ProductID })" style="max-width:100%;" />
+            }
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6" style="border:0px solid gray">
+            @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.ProductID)
+                <h1>@Model.Name</h1>
+                <h5 class="title-price">Price</h5>
+                <h3 style="margin-top:0px;">@Model.Price.ToString("c")</h3>
+                <br />
+
+                <div class="section" style="padding-bottom:5px;">
+                    <h5 class="title-attr">Status</h5>
+                    <h3 class="title-attr">In stock</h3>
+                    <br />
+                    <br />
+                </div>
+                <div class="section" style="padding-bottom:20px;">
+                    <h5 class="title-attr">Quantity</h5>
+                    <div>
+                        <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
+                        @Html.TextBox("quantity", 1)
+                        <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
+                    </div>
+                </div>
+                <div class="section" style="padding-bottom:20px;">
+                    <button type="submit" class="glyphicon glyphicon-shopping-cart btn btn-success" onclick="location.href='@Url.Action("AddToCart", "Cart")'">
+                        <i class="fa fa-shopping-cart"></i> Add To Cart
+                    </button>
+                </div>
+            }
+        </div>
+        </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div style="width:100%;border-top:1px solid silver; padding:15px;">
+                <div><h3 class="title-attr">Descriotion:</h3></div>
+                <p style="padding:15px;">
+                    @Model.Description
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

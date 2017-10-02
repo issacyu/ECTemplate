@@ -1,0 +1,35 @@
+﻿@model ECTemplate.Domain.Entities.Product
+
+<div class="col-md-3">
+    <div class="thumbnail">
+        @if (Model.ImageData != null)
+        {
+            <img class="img-responsive" src="@Url.Action("GetImage", "Product", new { Model.ProductID })" style="width: 200px; height: 200px;" />
+        }
+        <div class="caption">
+            <h4 class="pull-right">@Model.Price.ToString("c")</h4>
+            <h4>
+                @Html.ActionLink(Model.Name, "ProductDetail", new { productId = Model.ProductID, returnUrl = Request.Url.PathAndQuery })
+            </h4>
+        </div>
+        <div class="space-ten"></div>
+        <div class="btn-ground text-center">
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("AddToCart", "Cart", new { ProductId = Model.ProductID})'">
+                <i class="fa fa-shopping-cart"></i> Add To Cart
+            </button>
+
+            @Ajax.ActionLink("Quick View", "QuickView", "Product", new { ProductId = Model.ProductID }, new AjaxOptions { UpdateTargetId = "modal-content", InsertionMode = InsertionMode.Replace}, 
+                new {
+                    @* Needed to link to the html of the modal*@
+                    data_target = "#modal-container",
+                    @* Tells the bootstrap javascript to do its thing*@
+                    data_toggle = "modal",
+                    @* Empty the previous html content from the modal*@
+                    onclick = "emptyModalContent()",
+                    @class = "btn btn-primary "
+                })
+        </div>
+        <div class="space-ten"></div>
+    </div>
+</div>
+

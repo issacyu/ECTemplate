@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Bootstrap CSS CDN -->
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="~/Content/SideBar.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        @Html.Action("Menu", "Nav")
+
+        <!-- Page Content Holder -->
+        <div id="content">
+            @Html.Action("Navigation", "Nav")
+            <div class="container">
+                <div id="product">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:30px">
+                @Html.Partial("Footer")
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- jQuery CDN -->
+    @*<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- jQuery Nicescroll CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").niceScroll({
+                cursorcolor: '#53619d',
+                cursorwidth: 4,
+                cursorborder: 'none'
+            });
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').fadeOut();
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').fadeIn();
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>

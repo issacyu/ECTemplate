@@ -1,0 +1,40 @@
+﻿@model IEnumerable<string>
+
+@*@Html.RouteLink("Home",
+        new { controller = "Main", action = "Index" },
+        new { @class = "list-group-item active" })
+
+    @foreach (var link in Model)
+    {
+        @Html.RouteLink(link,
+        new{ controller = "Product", action = "CategorizeProduct", category = link, page = 1 },
+        new { @class = "list-group-item" })
+    }*@
+
+<nav id="sidebar">
+    <div id="dismiss">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+    </div>
+
+    <div class="sidebar-header">
+        <h3>Categories</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li class="active">
+            @Html.RouteLink("Home",
+                new { controller = "Main", action = "Index" })
+        </li>
+        @foreach (var link in Model)
+        {
+            <li>
+                @Html.RouteLink(link,
+                    new { controller = "Product", action = "Category", category = link, page = 1 })
+            </li>
+        }
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+
+    </ul>
+</nav>

@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<h2>My Account</h2>
+
+
+<div>
+    @Html.ActionLink("Change Password", "ChangePassword", "Account")
+</div>
+
+<div>
+    @Html.ActionLink("Change Address", "ChangeShippingAddress", "Account")
+</div>
+
+<div>
+    @Html.ActionLink("Order History", "OrderHistory", "Account")
+</div>
+
+<div>
+    @Html.ActionLink("Back to Home", "List", "Product")
+</div>*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Account Summary</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="~/Content/Custom/modern-business.css" rel="stylesheet">
+</head>
+<body>
+<!-- Page Content -->
+<div class="container">
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-lg-3 mb-4">
+            <div class="list-group">
+                @*<a href="index.html" class="list-group-item">Home</a>*@
+                @Ajax.ActionLink("Order History", "OrderHistory", "Account",
+                    new AjaxOptions { UpdateTargetId = "content_column", InsertionMode = InsertionMode.Replace }, new { @class = "list-group-item" })
+                @Ajax.ActionLink("Change Password", "ChangePassword", "Account",
+                    new AjaxOptions { UpdateTargetId = "content_column", InsertionMode = InsertionMode.Replace }, new { @class = "list-group-item" })
+                @Ajax.ActionLink("Change Address", "ChangeShippingAddress", "Account",
+                    new AjaxOptions { UpdateTargetId = "content_column", InsertionMode = InsertionMode.Replace }, new { @class = "list-group-item" })
+            </div>
+        </div>
+        <!-- Content Column -->
+        <div id="content_column" class="col-lg-9 mb-4">
+
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+@*@* The normal bootstrap modal with out any content in the modal-content div. Note that the id matches the data_target from the link*@
+<div id="modal-container" class="modal fade product_view" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div id="modal-content" class="modal-content">
+
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+    </div>
+    <!-- /.container -->
+</footer>
+<!-- Bootstrap core JavaScript -->
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/popper.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Custom/modal.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</body>
+</html>
+

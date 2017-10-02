@@ -1,0 +1,29 @@
+﻿@using ECTemplate.Domain.Entities
+@model IEnumerable<Orders>
+
+<div class="table-responsive">
+    <table id="mytable" class="table table-bordred table-striped ">
+        <th>Order #</th>
+        <th>Order Date</th>
+        <th>Detail</th>
+
+        @foreach (Orders order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.OrderDate.ToString("MMMM dd, yyyy")</td>
+                <td>
+                    @Ajax.ActionLink("View", "OrderDetail", "Account", order, new AjaxOptions { UpdateTargetId = "modal-content", InsertionMode = InsertionMode.Replace},
+                        new {
+                            @* Needed to link to the html of the modal*@
+                            data_target = "#modal-container",
+                            @* Tells the bootstrap javascript to do its thing*@
+                            data_toggle = "modal",
+                            @* Empty the previous html content from the modal*@
+                            onclick = "emptyModalContent()",
+                        })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

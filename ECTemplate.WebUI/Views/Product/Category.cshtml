@@ -1,0 +1,15 @@
+﻿@model ECTemplate.WebUI.Models.CategoryViewModel
+@{
+    Layout = "~/Views/Shared/_ProductLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+    <body>
+        @Html.Action("List", "Product", new { category = Model.Category, page = Model.Page })
+    </body>
+</html>
