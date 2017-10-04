@@ -160,16 +160,22 @@ namespace ECTemplate.WebUI.Controllers
             return View();
         }
 
-        public PartialViewResult ChangeShippingAddress()
+        public PartialViewResult UpdateShippingAddress()
         {
             return PartialView();
         }
 
         [HttpPost]
-        public ActionResult ChangeShippingAddress(CurrentUserViewModel currentUser, AddressViewModel shippingAddress)
+        public ActionResult UpdateShippingAddress(CurrentUserViewModel currentUser, AddressViewModel shippingAddress)
         {
             Addresses address = AddressRepository.FindAddress(currentUser.UserId);
+            Accounts account = AccountRepository.FindAccount(currentUser.UserId);
+            if (address == null)
+                address = new Addresses() { AddressId = account.UserId};
 
+            address.UserId = account.UserId;
+            address.ShippingFirstName = account.UserFirstName;
+            address.ShippingLastName = account.UserLastName;
             address.ShippingAddress = shippingAddress.Address;
             address.ShippingAddress2 = shippingAddress.Address2;
             address.ShippingCity = shippingAddress.City;

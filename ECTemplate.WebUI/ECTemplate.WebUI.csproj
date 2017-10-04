@@ -303,7 +303,7 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangeShippingAddress.cshtml" />
+    <Content Include="Views\Account\UpdateShippingAddress.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\OrderDetail.cshtml" />

@@ -34,7 +34,7 @@ namespace ECTemplate.Domain.Concrete
 
         public void UpdateShippingAddress(Addresses shippingAddress)
         {
-            //Addresses dbEntry = FindAddress(userId);
+            //Addresses dbEntry = FindAddress(shippingAddress.UserId);
 
             //dbEntry.ShippingFirstName = shippingAddress.ShippingFirstName;
             //dbEntry.ShippingLastName = shippingAddress.ShippingLastName;
@@ -45,6 +45,7 @@ namespace ECTemplate.Domain.Concrete
             //dbEntry.ShippingZip = shippingAddress.ShippingZip;
             //dbEntry.ShippingCountry = shippingAddress.ShippingCountry;
             //dbEntry.ShippingPhone = shippingAddress.ShippingPhone;
+            context.Addresses.Add(shippingAddress);
             context.SaveChanges();
         }
 

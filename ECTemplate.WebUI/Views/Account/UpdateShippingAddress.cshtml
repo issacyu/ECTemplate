@@ -1,6 +1,6 @@
 ﻿@model ECTemplate.WebUI.Models.AddressViewModel
 
-@using (Html.BeginForm("ChangeShippingAddress", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UpdateShippingAddress", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

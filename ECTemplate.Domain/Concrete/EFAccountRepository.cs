@@ -47,7 +47,6 @@ namespace ECTemplate.Domain.Concrete
         public Accounts FindAccount(int userId)
         {
             Accounts dbEntry = Accounts.FirstOrDefault(a => Equals(a.UserId, userId));
-
             return dbEntry;
         }
     }

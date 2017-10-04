@@ -45,5 +45,8 @@ namespace ECTemplate.Domain.Entities
         [Required(ErrorMessage = "Please enter a phone number.")]
         [Display(Name = "Phone")]
         public string ShippingPhone { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual Accounts Account { get; set; }
     }
 }
