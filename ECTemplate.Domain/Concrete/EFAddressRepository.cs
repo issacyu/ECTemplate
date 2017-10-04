@@ -34,18 +34,23 @@ namespace ECTemplate.Domain.Concrete
 
         public void UpdateShippingAddress(Addresses shippingAddress)
         {
-            //Addresses dbEntry = FindAddress(shippingAddress.UserId);
-
-            //dbEntry.ShippingFirstName = shippingAddress.ShippingFirstName;
-            //dbEntry.ShippingLastName = shippingAddress.ShippingLastName;
-            //dbEntry.ShippingAddress = shippingAddress.ShippingAddress;
-            //dbEntry.ShippingAddress2 = shippingAddress.ShippingAddress2;
-            //dbEntry.ShippingCity = shippingAddress.ShippingCity;
-            //dbEntry.ShippingState = shippingAddress.ShippingState;
-            //dbEntry.ShippingZip = shippingAddress.ShippingZip;
-            //dbEntry.ShippingCountry = shippingAddress.ShippingCountry;
-            //dbEntry.ShippingPhone = shippingAddress.ShippingPhone;
-            context.Addresses.Add(shippingAddress);
+            Addresses dbEntry = FindAddress(shippingAddress.UserId);
+            if(dbEntry == null)
+            {
+                context.Addresses.Add(shippingAddress);
+            }
+            else
+            {
+                dbEntry.ShippingFirstName = shippingAddress.ShippingFirstName;
+                dbEntry.ShippingLastName = shippingAddress.ShippingLastName;
+                dbEntry.ShippingAddress = shippingAddress.ShippingAddress;
+                dbEntry.ShippingAddress2 = shippingAddress.ShippingAddress2;
+                dbEntry.ShippingCity = shippingAddress.ShippingCity;
+                dbEntry.ShippingState = shippingAddress.ShippingState;
+                dbEntry.ShippingZip = shippingAddress.ShippingZip;
+                dbEntry.ShippingCountry = shippingAddress.ShippingCountry;
+                dbEntry.ShippingPhone = shippingAddress.ShippingPhone;
+            }
             context.SaveChanges();
         }
 

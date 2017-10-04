@@ -171,11 +171,15 @@ namespace ECTemplate.WebUI.Controllers
             Addresses address = AddressRepository.FindAddress(currentUser.UserId);
             Accounts account = AccountRepository.FindAccount(currentUser.UserId);
             if (address == null)
-                address = new Addresses() { AddressId = account.UserId};
-
-            address.UserId = account.UserId;
-            address.ShippingFirstName = account.UserFirstName;
-            address.ShippingLastName = account.UserLastName;
+            {
+                address = new Addresses()
+                {
+                    AddressId = account.UserAddressId,
+                    UserId = account.UserId
+                };
+            }
+            address.ShippingFirstName = shippingAddress.FirstName;
+            address.ShippingLastName = shippingAddress.LastName;
             address.ShippingAddress = shippingAddress.Address;
             address.ShippingAddress2 = shippingAddress.Address2;
             address.ShippingCity = shippingAddress.City;
