@@ -11,6 +11,7 @@ namespace ECTemplate.WebUI.Models
         [Required(ErrorMessage = "New password is required.")]
         public string NewPassword { get; set; }
 
+        [Required(ErrorMessage = "Confirm password is required.")]
         [Compare("NewPassword", ErrorMessage = "Please comnfirm your password.")]
         public string ConfirmPassword { get; set; }
     }
