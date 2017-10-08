@@ -141,9 +141,28 @@ namespace ECTemplate.WebUI.Controllers
             return RedirectToAction("Edit");
         }
 
-        public PartialViewResult UpdateShippingAddress()
+        public PartialViewResult UpdateShippingAddress(CurrentUserViewModel currentUser)
         {
-            return PartialView();
+            Addresses address = AddressRepository.FindAddress(currentUser.UserId);
+
+            if (address != null)
+            {
+                AddressViewModel model = new AddressViewModel()
+                {
+                    FirstName = address.ShippingFirstName,
+                    LastName = address.ShippingLastName,
+                    Address = address.ShippingAddress,
+                    Address2 = address.ShippingAddress2,
+                    City = address.ShippingCity,
+                    State = address.ShippingState,
+                    Zip = address.ShippingZip,
+                    Country = address.ShippingCountry,
+                    Phone = address.ShippingPhone
+                };
+                return PartialView(model);
+            }
+
+            return PartialView(new AddressViewModel());
         }
 
         [HttpPost]
@@ -153,9 +172,9 @@ namespace ECTemplate.WebUI.Controllers
                 return View();
 
             Addresses address = AddressRepository.FindAddress(currentUser.UserId);
-            Accounts account = AccountRepository.FindAccount(currentUser.UserId);
             if (address == null)
             {
+                Accounts account = AccountRepository.FindAccount(currentUser.UserId);
                 address = new Addresses()
                 {
                     AddressId = account.UserAddressId,
