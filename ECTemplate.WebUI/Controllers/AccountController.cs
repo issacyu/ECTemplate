@@ -116,22 +116,6 @@ namespace ECTemplate.WebUI.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Edit(RegisterViewModel model)
-        //{
-        //    Accounts account = new Accounts()
-        //    {
-        //        UserId = model.UserId,
-        //        UserFirstName = model.UserFirstName,
-        //        UserLastName = model.UserLastName,
-        //        UserEmail = model.UserEmail,
-        //        UserPassword = model.UserPassword
-        //    };
-
-        //    AccountRepository.UpdateAccount(account);
-        //    return RedirectToAction("Index", "Main");
-        //}
-
         public PartialViewResult ChangePassword()
         {
             return PartialView();
