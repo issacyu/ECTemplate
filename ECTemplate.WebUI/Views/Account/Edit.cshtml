@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Html.EnableClientValidation(true);
 }
 
 <!DOCTYPE html>
@@ -56,10 +57,14 @@
     <!-- /.container -->
 </footer>
 <!-- Bootstrap core JavaScript -->
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="~/Scripts/Custom/popper.min.js"></script>
 <script type="text/javascript" src="~/Scripts/Custom/modal.js"></script>
 <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
 </body>
 </html>
 

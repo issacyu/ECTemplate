@@ -4,11 +4,11 @@ namespace ECTemplate.WebUI.Models
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "The email is required.")]
         [Display(Name = "Email")]
         public string EmailAddress { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The password is required.")]
         public string Password { get; set; }
 
         [Display(Name = "Remember Me")]

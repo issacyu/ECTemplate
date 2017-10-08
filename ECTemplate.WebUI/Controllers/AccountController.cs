@@ -116,21 +116,21 @@ namespace ECTemplate.WebUI.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Edit(RegisterViewModel model)
-        {
-            Accounts account = new Accounts()
-            {
-                UserId = model.UserId,
-                UserFirstName = model.UserFirstName,
-                UserLastName = model.UserLastName,
-                UserEmail = model.UserEmail,
-                UserPassword = model.UserPassword
-            };
+        //[HttpPost]
+        //public ActionResult Edit(RegisterViewModel model)
+        //{
+        //    Accounts account = new Accounts()
+        //    {
+        //        UserId = model.UserId,
+        //        UserFirstName = model.UserFirstName,
+        //        UserLastName = model.UserLastName,
+        //        UserEmail = model.UserEmail,
+        //        UserPassword = model.UserPassword
+        //    };
 
-            AccountRepository.UpdateAccount(account);
-            return RedirectToAction("Index", "Main");
-        }
+        //    AccountRepository.UpdateAccount(account);
+        //    return RedirectToAction("Index", "Main");
+        //}
 
         public PartialViewResult ChangePassword()
         {
@@ -143,21 +143,20 @@ namespace ECTemplate.WebUI.Controllers
             Accounts account = AccountRepository.FindAccount(currentUser.UserId);
 
             if(!string.Equals(account.UserPassword, changePassword.CurrentPassword))
-            {
                 ModelState.AddModelError("", "The password that you enter doesn't match the current password.");
-                RedirectToAction("ChangePassword");
-            }
 
-            if(!string.Equals(changePassword.NewPassword, changePassword.ConfirmPassword))
-            {
+            if (!string.Equals(changePassword.NewPassword, changePassword.ConfirmPassword))
                 ModelState.AddModelError("", "The new password doesn't match the confirm password.");
-                return RedirectToAction("ChangePassword");
-            }
+
+            if (!ModelState.IsValid)
+                return View();
 
             account.UserPassword = changePassword.NewPassword;
             AccountRepository.UpdateAccount(account);
 
-            return View();
+            //return View();
+
+            return RedirectToAction("Edit");
         }
 
         public PartialViewResult UpdateShippingAddress()
@@ -168,6 +167,9 @@ namespace ECTemplate.WebUI.Controllers
         [HttpPost]
         public ActionResult UpdateShippingAddress(CurrentUserViewModel currentUser, AddressViewModel shippingAddress)
         {
+            if (!ModelState.IsValid)
+                return View();
+
             Addresses address = AddressRepository.FindAddress(currentUser.UserId);
             Accounts account = AccountRepository.FindAccount(currentUser.UserId);
             if (address == null)
