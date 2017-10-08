@@ -16,7 +16,7 @@ namespace ECTemplate.Domain.Concrete
         {
             Orders dbEntry = new Orders()
             {
-                OrderId = 23,
+                OrderId = 1,
                 OrderUserId = orderUserId,
                 OrderAmount = 1,
                 OrderShipAddress = shippingDetails.ShippingAddress,
