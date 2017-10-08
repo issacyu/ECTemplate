@@ -22,33 +22,6 @@
 
 </head>
 
-@*@Html.Action("Navigation", "Nav")*@
-
-@*<div class="container">
-    <div class="row">
-        <div class="col-md-9">
-            <div class="thumbnail">
-                <img class="img-responsive" src="http://placehold.it/800x300" alt="">
-                <div class="caption-full">
-                    <h4 class="pull-right">@Model.Price.ToString("c")</h4>
-                    <h4><a href="#">@Model.Name</a></h4>
-                    <div class="text-center">
-                        @using (Ajax.BeginForm("AddToCart", "Cart", new AjaxOptions { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }))
-                        {
-                            @Html.Label("Quantity:")
-                            @Html.TextBox("quantity", 1, new { @class = "input-sm" })
-                            @Html.Hidden(Request.Url.PathAndQuery)
-                            @Html.HiddenFor(Model => Model.ProductID)
-                            <input class="btn btn-primary" type="submit" value="Add to cart" />
-                        }
-                    </div>
-                </div>
-            </div>
-            <h4>Description:</h4>
-            <p>@Model.Description</p>
-        </div>
-    </div>
-</div>*@
 @Html.Action("Navigation", "Nav")
 
 <div class="container">

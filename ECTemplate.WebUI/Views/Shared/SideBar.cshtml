@@ -1,16 +1,5 @@
 ﻿@model IEnumerable<string>
 
-@*@Html.RouteLink("Home",
-        new { controller = "Main", action = "Index" },
-        new { @class = "list-group-item active" })
-
-    @foreach (var link in Model)
-    {
-        @Html.RouteLink(link,
-        new{ controller = "Product", action = "CategorizeProduct", category = link, page = 1 },
-        new { @class = "list-group-item" })
-    }*@
-
 <nav id="sidebar">
     <div id="dismiss">
         <i class="glyphicon glyphicon-arrow-left"></i>

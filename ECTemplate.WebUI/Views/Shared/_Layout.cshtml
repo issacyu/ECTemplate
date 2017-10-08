@@ -1,40 +1,4 @@
-﻿@*<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Content/shop-homepage.css" rel="stylesheet">
-    <link href="~/Content/Custom/SideBar.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-
-    <title>@ViewBag.Title</title>
-</head>
-
-<body>
-    @Html.Action("Navigation", "Nav")
-    <div class="container">
-        <div id="content">
-            <div class="col-md-2">
-                @Html.Action("Menu", "Nav")
-            </div>
-            <div class="col-md-10">
-                @Html.Action("Slider", "Main")
-                <div id="product">
-                    <div class="row">
-                        @Html.Action("List", "Product")
-                    </div>
-                </div>
-            </div>
-            @RenderBody()
-        </div>
-    </div>
-
-    @Html.Partial("Footer")
-</body>
-</html>*@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
