@@ -12,12 +12,14 @@ namespace ECTemplate.WebUI.Controllers
         private IProductsRepository ProductRepository;
         private IOrderRepository OrderRepository;
         private IOrderDetailRepository OrderDetailRepository;
+        private IAddressRepository AddressRepository;
 
-        public CartController(IProductsRepository repo, IOrderRepository proc, IOrderDetailRepository orderDetailRepo)
+        public CartController(IProductsRepository repo, IOrderRepository proc, IOrderDetailRepository orderDetailRepo, IAddressRepository addressRepository)
         {
             ProductRepository = repo;
             OrderRepository = proc;
             OrderDetailRepository = orderDetailRepo;
+            AddressRepository = addressRepository;
         }
 
         public PartialViewResult Index(Cart cart, string returnUrl)
@@ -53,8 +55,13 @@ namespace ECTemplate.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public ViewResult Checkout()
+        public ViewResult Checkout(CurrentUserViewModel currentUser)
         {
+            Addresses address = AddressRepository.FindAddress(currentUser.UserId);
+
+            if (address != null)
+                return View(address);
+
             return View(new Addresses());
         }
         

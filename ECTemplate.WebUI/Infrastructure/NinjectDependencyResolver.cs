@@ -37,16 +37,18 @@ namespace ECTemplate.WebUI.Infrastructure
 
             kernel.Bind<IAccountRepository>().To<EFAccountRepository>();
 
-            EmailSettings emailSetting = new EmailSettings
-            {
-                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
-            };
-
             kernel.Bind<IOrderRepository>().To<EFOrderRepository>();
 
             kernel.Bind<IOrderDetailRepository>().To<EFOrderDetailRepository>();
 
+            kernel.Bind<IAddressRepository>().To<EFAddressRepository>();
+
             kernel.Bind<IAuthProvider>().To<FromsAuthProvider>();
+
+            EmailSettings emailSetting = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
         }
     }
 }
