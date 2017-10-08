@@ -154,8 +154,6 @@ namespace ECTemplate.WebUI.Controllers
             account.UserPassword = changePassword.NewPassword;
             AccountRepository.UpdateAccount(account);
 
-            //return View();
-
             return RedirectToAction("Edit");
         }
 
