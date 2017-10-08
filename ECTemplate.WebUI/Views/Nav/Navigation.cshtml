@@ -319,7 +319,7 @@
                 </li>
                 <li>
                     @Html.ActionLink("My cart " + @Model.Cart.Lines.Sum(x => x.Quantity) + " item(s)",
-                        "Checkout", "Cart")
+                        "Index", "Cart")
                 </li>
             </ul>
         </div>
