@@ -7,9 +7,7 @@ namespace ECTemplate.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int  AddressId { get; set; }
-
-        public int UserId { get; set; }
+        public string AddressId { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
@@ -44,8 +42,5 @@ namespace ECTemplate.Domain.Entities
 
         [Display(Name = "Phone")]
         public string ShippingPhone { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual Accounts Account { get; set; }
     }
 }

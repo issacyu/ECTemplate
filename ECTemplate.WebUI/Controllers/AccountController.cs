@@ -6,6 +6,7 @@ using ECTemplate.WebUI.Models;
 using ECTemplate.Domain.Concrete;
 using ECTemplate.Domain.Entities;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ECTemplate.WebUI.Controllers
 {
@@ -44,23 +45,10 @@ namespace ECTemplate.WebUI.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
-            int userId = LookUpRepository.FindLookUp().UserId;
-            int addressId = LookUpRepository.FindLookUp().AddressId;
-
-            Accounts account = new Accounts()
-            {
-                UserId = userId,
-                UserFirstName = model.UserFirstName,
-                UserLastName = model.UserLastName,
-                UserEmail = model.UserEmail,
-                UserPassword = model.UserPassword,
-                UserAddressId = addressId
-            };
-
-            Addresses address = new Addresses()
+            string addressId = Guid.NewGuid().ToString();
+            Addresses newAddress = new Addresses()
             {
                 AddressId = addressId,
-                UserId = userId,
                 ShippingFirstName = model.UserFirstName,
                 ShippingLastName = model.UserLastName,
                 ShippingAddress = model.ShippingAddress,
@@ -69,14 +57,21 @@ namespace ECTemplate.WebUI.Controllers
                 ShippingState = model.ShippingState,
                 ShippingZip = model.ShippingZip,
                 ShippingCountry = model.ShippingCountry,
-                ShippingPhone = model.ShippingPhone
+                ShippingPhone = model.ShippingPhone,
             };
 
-            AddressRepository.AddShippingAddress(address);
-            AccountRepository.AddAccount(account);
-            LookUpRepository.UpdateLookUp();
-
-            return Redirect(Url.Action("List", "Product"));
+            Accounts newAccount = new Accounts
+            {
+                UserFirstName = "a",
+                UserLastName = "a",
+                UserEmail = model.UserEmail,
+                UserPassword = model.UserPassword,
+                AddressId = addressId,
+                UserType = "User",
+                Address = newAddress
+            };
+            AccountRepository.AddAccount(newAccount);
+            return View("Registered");
         }
 
         public ActionResult Login()
@@ -177,8 +172,8 @@ namespace ECTemplate.WebUI.Controllers
                 Accounts account = AccountRepository.FindAccount(currentUser.UserId);
                 address = new Addresses()
                 {
-                    AddressId = account.UserAddressId,
-                    UserId = account.UserId
+                    AddressId = account.AddressId,
+                    //UserId = account.UserId
                 };
             }
             address.ShippingFirstName = shippingAddress.FirstName;

@@ -1,9 +1,7 @@
 ﻿using System.Web.Security;
 using System.Linq;
-using System.Web.Mvc;
 using ECTemplate.WebUI.Infrastructure.Abstract;
 using ECTemplate.WebUI.Models;
-using ECTemplate.Domain.Concrete;
 using ECTemplate.Domain.Entities;
 using ECTemplate.Domain.Abstract;
 

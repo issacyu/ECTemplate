@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECTemplate.Domain.Entities
@@ -7,7 +6,7 @@ namespace ECTemplate.Domain.Entities
     public class Accounts
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
@@ -26,8 +25,9 @@ namespace ECTemplate.Domain.Entities
         [DataType(DataType.Password)]
         public string UserPassword { get; set; }
 
-        public int UserAddressId { get; set; }
+        public string AddressId { get; set; }
 
-        public virtual ICollection<Addresses> Addresses { get; set; }
+        [ForeignKey("AddressId")]
+        public virtual Addresses Address { get; set; }
     }
 }

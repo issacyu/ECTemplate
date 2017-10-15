@@ -13,19 +13,27 @@ namespace ECTemplate.Domain.Concrete
 
         public void AddAccount(Accounts Account)
         {
-            Accounts dbEntry = new Accounts()
+            if (Account.UserId == 0)
             {
-                UserId = Account.UserId,
-                UserFirstName = Account.UserFirstName,
-                UserLastName = Account.UserLastName,
-                UserEmail = Account.UserEmail,
-                UserType = "User",
-                UserPassword = Account.UserPassword,
-                UserAddressId = Account.UserAddressId
-            };
+                context.Accounts.Add(Account);
+                context.SaveChanges();
+            }
+            else
+            {
+                Accounts dbEntry = new Accounts()
+                {
+                    UserId = Account.UserId,
+                    UserFirstName = Account.UserFirstName,
+                    UserLastName = Account.UserLastName,
+                    UserEmail = Account.UserEmail,
+                    UserType = "User",
+                    UserPassword = Account.UserPassword,
+                    AddressId = Account.AddressId
+                };
 
-            context.Accounts.Add(dbEntry);
-            context.SaveChanges();
+                context.Accounts.Add(dbEntry);
+                context.SaveChanges();
+            }
         }
 
         public void UpdateAccount(Accounts account)

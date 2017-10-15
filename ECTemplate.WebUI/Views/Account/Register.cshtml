@@ -16,18 +16,39 @@
         @Html.PasswordFor(m => m.UserPassword, new { id = "password", @class = "form-control", @placeholder = "Confirm Password" })
     </div>
     <div class="form-group">
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-            </div>
-        </div>
+        @Html.TextBoxFor(m => m.UserFirstName, null, new { id = "username", @class = "form-control", @placeholder = "First Name" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.UserLastName, null, new { id = "username", @class = "form-control", @placeholder = "Last Name" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.ShippingAddress, null, new { id = "username", @class = "form-control", @placeholder = "Last Name" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.ShippingAddress2, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Address 1" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.ShippingCity, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Address 2" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.ShippingState, null, new { id = "username", @class = "form-control", @placeholder = "Shipping City" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.ShippingZip, null, new { id = "username", @class = "form-control", @placeholder = "Shipping State" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.ShippingCountry, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Zip" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.ShippingPhone, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Country" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.ShippingPhone, null, new { id = "username", @class = "form-control", @placeholder = "Phone" })
     </div>
     <div class="form-group">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    @Html.ActionLink("Forgot Password?", null, new { @class = "forgot-password" });
-                </div>
+            <div class="col-sm-6 col-sm-offset-3">
+                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
             </div>
         </div>
     </div>

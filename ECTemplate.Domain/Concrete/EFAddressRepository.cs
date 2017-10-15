@@ -16,7 +16,7 @@ namespace ECTemplate.Domain.Concrete
             Addresses dbEntry = new Addresses()
             {
                 AddressId = shippingAddress.AddressId,
-                UserId = shippingAddress.UserId,
+                //UserId = shippingAddress.UserId,
                 ShippingFirstName = shippingAddress.ShippingFirstName,
                 ShippingLastName = shippingAddress.ShippingLastName,
                 ShippingAddress = shippingAddress.ShippingAddress,
@@ -34,18 +34,19 @@ namespace ECTemplate.Domain.Concrete
 
         public void UpdateShippingAddress(Addresses shippingAddress)
         {
-            Addresses dbEntry = FindAddress(shippingAddress.UserId);
-            if(dbEntry == null)
-                context.Addresses.Add(shippingAddress);
-            else
-                dbEntry = shippingAddress;
+            //Addresses dbEntry = FindAddress(shippingAddress.UserId);
+            //if(dbEntry == null)
+            //    context.Addresses.Add(shippingAddress);
+            //else
+            //    dbEntry = shippingAddress;
 
-            context.SaveChanges();
+            //context.SaveChanges();
         }
 
         public Addresses FindAddress(int userId)
         {
-            return Addresses.FirstOrDefault(a => Equals(a.UserId, userId));
+            //return Addresses.FirstOrDefault(a => Equals(a.UserId, userId));
+            return new Addresses();
         }
     }
 }
