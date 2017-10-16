@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECTemplate.Domain.Entities
@@ -25,9 +26,9 @@ namespace ECTemplate.Domain.Entities
         [DataType(DataType.Password)]
         public string UserPassword { get; set; }
 
-        public string AddressId { get; set; }
+        [ForeignKey("Address")]
+        public Guid AddressId { get; set; }
 
-        [ForeignKey("AddressId")]
         public virtual Addresses Address { get; set; }
     }
 }

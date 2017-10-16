@@ -48,7 +48,7 @@ namespace ECTemplate.WebUI.Controllers
             if (!ModelState.IsValid)
                 return View("Register", "~/Views/Shared/_AdminLayout.cshtml");
 
-            string addressId = Guid.NewGuid().ToString();
+            Guid addressId = Guid.NewGuid();
             Addresses newAddress = new Addresses()
             {
                 AddressId = addressId,
@@ -73,6 +73,7 @@ namespace ECTemplate.WebUI.Controllers
                 UserType = "User",
                 Address = newAddress
             };
+
             AccountRepository.AddAccount(newAccount);
             return View("Registered");
         }
@@ -169,27 +170,20 @@ namespace ECTemplate.WebUI.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            Addresses address = AddressRepository.FindAddress(currentUser.UserId);
-            if (address == null)
+            Addresses address = new Addresses
             {
-                Accounts account = AccountRepository.FindAccount(currentUser.UserId);
-                address = new Addresses()
-                {
-                    AddressId = account.AddressId,
-                    //UserId = account.UserId
-                };
-            }
-            address.ShippingFirstName = shippingAddress.FirstName;
-            address.ShippingLastName = shippingAddress.LastName;
-            address.ShippingAddress = shippingAddress.Address;
-            address.ShippingAddress2 = shippingAddress.Address2;
-            address.ShippingCity = shippingAddress.City;
-            address.ShippingState = shippingAddress.State;
-            address.ShippingZip = shippingAddress.Zip;
-            address.ShippingCountry = shippingAddress.Country;
-            address.ShippingPhone = shippingAddress.Phone;
+                ShippingFirstName = shippingAddress.FirstName,
+                ShippingLastName = shippingAddress.LastName,
+                ShippingAddress = shippingAddress.Address,
+                ShippingAddress2 = shippingAddress.Address2,
+                ShippingCity = shippingAddress.City,
+                ShippingState = shippingAddress.State,
+                ShippingZip = shippingAddress.Zip,
+                ShippingCountry = shippingAddress.Country,
+                ShippingPhone = shippingAddress.Phone
+            };
 
-            AddressRepository.UpdateShippingAddress(address);
+            AddressRepository.UpdateShippingAddress(currentUser.UserId, address);
             return View();
         }
 

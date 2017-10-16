@@ -9,7 +9,7 @@ namespace ECTemplate.Domain.Abstract
 
         void AddShippingAddress(Addresses shippingAddress);
 
-        void UpdateShippingAddress(Addresses shippingAddress);
+        void UpdateShippingAddress(int userId, Addresses shippingAddress);
 
         Addresses FindAddress(int userId);
     }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECTemplate.Domain.Entities
@@ -7,7 +8,7 @@ namespace ECTemplate.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string AddressId { get; set; }
+        public Guid AddressId { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]

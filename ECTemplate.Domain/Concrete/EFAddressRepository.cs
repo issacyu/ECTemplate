@@ -16,7 +16,6 @@ namespace ECTemplate.Domain.Concrete
             Addresses dbEntry = new Addresses()
             {
                 AddressId = shippingAddress.AddressId,
-                //UserId = shippingAddress.UserId,
                 ShippingFirstName = shippingAddress.ShippingFirstName,
                 ShippingLastName = shippingAddress.ShippingLastName,
                 ShippingAddress = shippingAddress.ShippingAddress,
@@ -32,21 +31,26 @@ namespace ECTemplate.Domain.Concrete
             context.SaveChanges();
         }
 
-        public void UpdateShippingAddress(Addresses shippingAddress)
+        public void UpdateShippingAddress(int userId, Addresses shippingAddress)
         {
-            //Addresses dbEntry = FindAddress(shippingAddress.UserId);
-            //if(dbEntry == null)
-            //    context.Addresses.Add(shippingAddress);
-            //else
-            //    dbEntry = shippingAddress;
+            Addresses dbEntry = FindAddress(userId);
 
-            //context.SaveChanges();
+            dbEntry.ShippingFirstName = shippingAddress.ShippingFirstName;
+            dbEntry.ShippingLastName = shippingAddress.ShippingLastName;
+            dbEntry.ShippingAddress = shippingAddress.ShippingAddress;
+            dbEntry.ShippingAddress2 = shippingAddress.ShippingAddress2;
+            dbEntry.ShippingCity = shippingAddress.ShippingCity;
+            dbEntry.ShippingState = shippingAddress.ShippingState;
+            dbEntry.ShippingZip = shippingAddress.ShippingZip;
+            dbEntry.ShippingCountry = shippingAddress.ShippingCountry;
+            dbEntry.ShippingPhone = shippingAddress.ShippingPhone;
+
+            context.SaveChanges();
         }
 
         public Addresses FindAddress(int userId)
         {
-            //return Addresses.FirstOrDefault(a => Equals(a.UserId, userId));
-            return new Addresses();
+            return context.Accounts.Include("Address").FirstOrDefault(a => a.UserId == userId).Address;
         }
     }
 }
