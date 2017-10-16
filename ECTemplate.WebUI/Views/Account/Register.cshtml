@@ -4,43 +4,64 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content//bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/Custom/login.css" rel="stylesheet">
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/login.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "register-form", @class = "display: none" }))
 {
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.TextBoxFor(m => m.UserEmail, null, new { id = "username", @class = "form-control", @placeholder = "Email Address" })
+        @Html.ValidationMessageFor(m => m.UserEmail, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
         @Html.PasswordFor(m => m.UserPassword, new { id = "password", @class = "form-control", @placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.UserPassword, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-        @Html.PasswordFor(m => m.UserPassword, new { id = "password", @class = "form-control", @placeholder = "Confirm Password" })
+        @Html.PasswordFor(m => m.ConfirmPassword, new { id = "password", @class = "form-control", @placeholder = "Confirm Password" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
         @Html.TextBoxFor(m => m.UserFirstName, null, new { id = "username", @class = "form-control", @placeholder = "First Name" })
+        @Html.ValidationMessageFor(m => m.UserFirstName, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
         @Html.TextBoxFor(m => m.UserLastName, null, new { id = "username", @class = "form-control", @placeholder = "Last Name" })
+        @Html.ValidationMessageFor(m => m.UserLastName, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-        @Html.TextBoxFor(m => m.ShippingAddress, null, new { id = "username", @class = "form-control", @placeholder = "Last Name" })
+        @Html.TextBoxFor(m => m.ShippingAddress, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Address 1" })
+        @Html.ValidationMessageFor(m => m.ShippingAddress, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-        @Html.TextBoxFor(m => m.ShippingAddress2, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Address 1" })
+        @Html.TextBoxFor(m => m.ShippingAddress2, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Address 2" })
     </div>
     <div class="form-group">
-        @Html.TextBoxFor(m => m.ShippingCity, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Address 2" })
+        @Html.TextBoxFor(m => m.ShippingCity, null, new { id = "username", @class = "form-control", @placeholder = "Shipping City" })
+        @Html.ValidationMessageFor(m => m.ShippingCity, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-        @Html.TextBoxFor(m => m.ShippingState, null, new { id = "username", @class = "form-control", @placeholder = "Shipping City" })
+        @Html.TextBoxFor(m => m.ShippingState, null, new { id = "username", @class = "form-control", @placeholder = "Shipping State" })
+        @Html.ValidationMessageFor(m => m.ShippingState, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-        @Html.TextBoxFor(m => m.ShippingZip, null, new { id = "username", @class = "form-control", @placeholder = "Shipping State" })
+        @Html.TextBoxFor(m => m.ShippingZip, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Zip" })
+        @Html.ValidationMessageFor(m => m.ShippingZip, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
-        @Html.TextBoxFor(m => m.ShippingCountry, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Zip" })
-    </div>
-    <div class="form-group">
-        @Html.TextBoxFor(m => m.ShippingPhone, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Country" })
+        @Html.TextBoxFor(m => m.ShippingCountry, null, new { id = "username", @class = "form-control", @placeholder = "Shipping Coutry" })
+        @Html.ValidationMessageFor(m => m.ShippingCountry, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
         @Html.TextBoxFor(m => m.ShippingPhone, null, new { id = "username", @class = "form-control", @placeholder = "Phone" })
@@ -55,5 +76,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Home", "List", "Product")
+    @Html.ActionLink("Back to Home", "Index", "Main")
 </div>

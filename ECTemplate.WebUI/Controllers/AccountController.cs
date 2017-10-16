@@ -45,6 +45,9 @@ namespace ECTemplate.WebUI.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
+            if (!ModelState.IsValid)
+                return View("Register", "~/Views/Shared/_AdminLayout.cshtml");
+
             string addressId = Guid.NewGuid().ToString();
             Addresses newAddress = new Addresses()
             {
