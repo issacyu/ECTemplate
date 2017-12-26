@@ -77,25 +77,8 @@ namespace ECTemplate.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 Guid orderDetailId = Guid.NewGuid();
-                //Orders order = OrderRepository.AddOrder(user.UserId, cart, shippingDetails);
                 Accounts account = AccountRepository.FindAccount(user.UserId);
-                //OrderDetailRepository.AddOrderDetail(order.OrderId, cart);
-                //Orders newOrder = new Orders
-                //{
-                //    OrderId = orderId,
-                //    OrderAmount = 1,
-                //    OrderShipAddress = shippingDetails.ShippingAddress,
-                //    OrderShipAddress2 = shippingDetails.ShippingAddress2,
-                //    OrderCity = shippingDetails.ShippingCity,
-                //    OrderState = shippingDetails.ShippingState,
-                //    OrderZip = shippingDetails.ShippingZip,
-                //    OrderCountry = shippingDetails.ShippingCountry,
-                //    OrderPhone = shippingDetails.ShippingPhone,
-                //    OrderDate = DateTime.Now,
-                //    OrderShipped = 0
-                //};
                 OrderRepository.AddOrder(user.UserId, cart, shippingDetails);
-
                 EmailSettings setting = new EmailSettings() { MailToAddress = user.UserEmail };
                 EmailProcessor processor = new EmailProcessor(setting);
                 processor.ProcessOrder(cart, shippingDetails);
