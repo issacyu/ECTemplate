@@ -91,14 +91,12 @@
   <ItemGroup>
     <Compile Include="Abstract\IAccountRepository.cs" />
     <Compile Include="Abstract\IAddressRepository.cs" />
-    <Compile Include="Abstract\ILookUpRepository.cs" />
     <Compile Include="Abstract\IOrderDetailRepository.cs" />
     <Compile Include="Abstract\IOrderRepository.cs" />
     <Compile Include="Abstract\IProductsRepository.cs" />
     <Compile Include="Concrete\EFAccountRepository.cs" />
     <Compile Include="Concrete\EFAddressRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
-    <Compile Include="Concrete\EFLookUpRepository.cs" />
     <Compile Include="Concrete\EFOrderDetailRepository.cs" />
     <Compile Include="Concrete\EFOrderRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />

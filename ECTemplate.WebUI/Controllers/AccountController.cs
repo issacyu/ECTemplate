@@ -17,8 +17,6 @@ namespace ECTemplate.WebUI.Controllers
 
         private EFAddressRepository AddressRepository { get; set; }
 
-        private EFLookUpRepository LookUpRepository { get; set; }
-
         private EFOrderRepository OrderRepository { get; set; }
 
         private EFOrderDetailRepository OrderDetailRepository { get; set; }
@@ -30,7 +28,6 @@ namespace ECTemplate.WebUI.Controllers
             AuthProvider = auth;
             AccountRepository = new EFAccountRepository();
             AddressRepository = new EFAddressRepository();
-            LookUpRepository = new EFLookUpRepository();
             OrderRepository = new EFOrderRepository();
             OrderDetailRepository = new EFOrderDetailRepository();
             ProductRepository = new EFProductRepository();
