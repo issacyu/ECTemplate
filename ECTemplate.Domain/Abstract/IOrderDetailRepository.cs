@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ECTemplate.Domain.Entities;
 
 namespace ECTemplate.Domain.Abstract
@@ -11,8 +8,8 @@ namespace ECTemplate.Domain.Abstract
     {
         IEnumerable<OrderDetails> OrderDetails { get; }
 
-        void AddOrderDetail(int orderId, Cart cart);
+        void AddOrderDetail(Orders order, Cart cart);
 
-        IEnumerable<OrderDetails> GetOrderDetails(int orderId);
+        IEnumerable<OrderDetails> GetOrderDetails(Guid orderId);
     }
 }

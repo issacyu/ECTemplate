@@ -4,6 +4,7 @@ using ECTemplate.Domain.Abstract;
 using ECTemplate.Domain.Entities;
 using ECTemplate.WebUI.Models;
 using ECTemplate.Domain.Concrete;
+using System;
 
 namespace ECTemplate.WebUI.Controllers
 {
@@ -13,13 +14,15 @@ namespace ECTemplate.WebUI.Controllers
         private IOrderRepository OrderRepository;
         private IOrderDetailRepository OrderDetailRepository;
         private IAddressRepository AddressRepository;
+        private IAccountRepository AccountRepository;
 
-        public CartController(IProductsRepository repo, IOrderRepository proc, IOrderDetailRepository orderDetailRepo, IAddressRepository addressRepository)
+        public CartController(IProductsRepository repo, IOrderRepository proc, IOrderDetailRepository orderDetailRepo, IAddressRepository addressRepository, IAccountRepository accountRepository)
         {
             ProductRepository = repo;
             OrderRepository = proc;
             OrderDetailRepository = orderDetailRepo;
             AddressRepository = addressRepository;
+            AccountRepository = accountRepository;
         }
 
         public PartialViewResult Index(Cart cart, string returnUrl)
@@ -73,8 +76,26 @@ namespace ECTemplate.WebUI.Controllers
 
             if (ModelState.IsValid)
             {
-                Orders order = OrderRepository.AddOrder(user.UserId, cart, shippingDetails);
-                OrderDetailRepository.AddOrderDetail(order.OrderId, cart);
+                Guid orderDetailId = Guid.NewGuid();
+                //Orders order = OrderRepository.AddOrder(user.UserId, cart, shippingDetails);
+                Accounts account = AccountRepository.FindAccount(user.UserId);
+                //OrderDetailRepository.AddOrderDetail(order.OrderId, cart);
+                //Orders newOrder = new Orders
+                //{
+                //    OrderId = orderId,
+                //    OrderAmount = 1,
+                //    OrderShipAddress = shippingDetails.ShippingAddress,
+                //    OrderShipAddress2 = shippingDetails.ShippingAddress2,
+                //    OrderCity = shippingDetails.ShippingCity,
+                //    OrderState = shippingDetails.ShippingState,
+                //    OrderZip = shippingDetails.ShippingZip,
+                //    OrderCountry = shippingDetails.ShippingCountry,
+                //    OrderPhone = shippingDetails.ShippingPhone,
+                //    OrderDate = DateTime.Now,
+                //    OrderShipped = 0
+                //};
+                OrderRepository.AddOrder(user.UserId, cart, shippingDetails);
+
                 EmailSettings setting = new EmailSettings() { MailToAddress = user.UserEmail };
                 EmailProcessor processor = new EmailProcessor(setting);
                 processor.ProcessOrder(cart, shippingDetails);

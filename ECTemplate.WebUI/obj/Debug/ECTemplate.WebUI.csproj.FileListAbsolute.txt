@@ -98,6 +98,8 @@ C:\Users\IYU\Documents\Visual Studio 2017\Projects\ECTemplate\ECTemplate.WebUI\b
 C:\Users\IYU\Documents\Visual Studio 2017\Projects\ECTemplate\ECTemplate.WebUI\bin\Microsoft.AI.Web.xml
 C:\Users\IYU\Documents\Visual Studio 2017\Projects\ECTemplate\ECTemplate.WebUI\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\IYU\Documents\Visual Studio 2017\Projects\ECTemplate\ECTemplate.WebUI\bin\Microsoft.ApplicationInsights.xml
+C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\obj\Debug\ECTemplate.WebUI.csprojResolveAssemblyReference.cache
+C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\obj\Debug\ECTemplate.WebUI.csproj.CoreCompileInputs.cache
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\bin\ApplicationInsights.config
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\bin\roslyn\csc.exe
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\bin\roslyn\csc.exe.config
@@ -194,7 +196,5 @@ C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\bin\System.Web.Webpages.Deploym
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\bin\System.Web.Webpages.Razor.xml
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\bin\System.Web.Helpers.xml
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\bin\System.Web.Mvc.xml
-C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\obj\Debug\ECTemplate.WebUI.csprojResolveAssemblyReference.cache
-C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\obj\Debug\ECTemplate.WebUI.csproj.CoreCompileInputs.cache
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\obj\Debug\ECTemplate.WebUI.dll
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.WebUI\obj\Debug\ECTemplate.WebUI.pdb

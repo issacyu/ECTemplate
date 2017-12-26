@@ -68,7 +68,7 @@ C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\bin\Debug\System.Web.Razor.xml
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\bin\Debug\System.Web.WebPages.xml
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\obj\Debug\ECTemplate.Domain.csprojResolveAssemblyReference.cache
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\obj\Debug\ECTemplate.Domain.csproj.CoreCompileInputs.cache
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\obj\Debug\ECTemplate.Domain.dll
 C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\obj\Debug\ECTemplate.Domain.pdb
+C:\Users\IYU\Desktop\ECTemplate\ECTemplate.Domain\obj\Debug\ECTemplate.Domain.csprojResolveAssemblyReference.cache

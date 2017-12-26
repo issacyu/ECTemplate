@@ -55,8 +55,6 @@ namespace ECTemplate.Domain.Concrete
                 .AppendLine(shippingInfo.ShippingCountry)
                 .AppendLine(shippingInfo.ShippingZip)
                 .AppendLine("---");
-            //.AppendFormat("Gift wrap: {0}",
-            //shippingInfo.GiftWrap ? "Yes" : "No");
 
             SendMail("New order submitted!", body);
         }

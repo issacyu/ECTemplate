@@ -12,12 +12,23 @@ namespace ECTemplate.Domain.Concrete
 
         public IEnumerable<Orders> Orders => context.Orders;
 
-        public Orders AddOrder(int orderUserId, Cart cart, Addresses shippingDetails)
+        public IEnumerable<Accounts> Accounts => context.Accounts;
+
+        IOrderDetailRepository OrderDetailRepository { get; set; }
+
+        public EFOrderRepository() { }
+
+        public EFOrderRepository(IOrderDetailRepository orderDetailRepository)
         {
+            OrderDetailRepository = orderDetailRepository;
+        }
+
+        public void AddOrder(int userId, Cart cart, Addresses shippingDetails)
+        {
+
             Orders dbEntry = new Orders()
             {
-                OrderId = 1,
-                OrderUserId = orderUserId,
+                OrderId = Guid.NewGuid(),
                 OrderAmount = 1,
                 OrderShipAddress = shippingDetails.ShippingAddress,
                 OrderShipAddress2 = shippingDetails.ShippingAddress2,
@@ -25,19 +36,23 @@ namespace ECTemplate.Domain.Concrete
                 OrderState = shippingDetails.ShippingState,
                 OrderZip = shippingDetails.ShippingZip,
                 OrderCountry = shippingDetails.ShippingCountry,
+                OrderPhone = shippingDetails.ShippingPhone,
                 OrderDate = DateTime.Now,
-                OrderShipped = 0
+                OrderStatus = 0
             };
 
-            context.Orders.Add(dbEntry);
-            context.SaveChanges();
+            Accounts account = Accounts.Where(a => a.UserId == userId).FirstOrDefault();
+            if (account.Orders == null)
+                account.Orders = new List<Orders>();
 
-            return dbEntry;
+            OrderDetailRepository.AddOrderDetail(dbEntry, cart);
+            account.Orders.Add(dbEntry);
+            context.SaveChanges();
         }
 
         public IEnumerable<Orders> GetOrder(int userId)
         {
-           return Orders.Where(o => Equals(o.OrderUserId, userId)).ToList();
+           return Orders.Where(o => Equals(o.OrderAccount, userId)).ToList();
         }
     }
 }

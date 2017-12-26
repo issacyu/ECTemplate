@@ -7,7 +7,9 @@ namespace ECTemplate.Domain.Abstract
     {
         IEnumerable<Orders> Orders { get; }
 
-        Orders AddOrder(int orderUserId, Cart cart, Addresses shippingDetails);
+        IEnumerable<Accounts> Accounts { get; }
+
+        void AddOrder(int userId, Cart cart, Addresses shippingDetails);
 
         IEnumerable<Orders> GetOrder(int userId);
     }

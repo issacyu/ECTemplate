@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ECTemplate.Domain.Abstract;
 using ECTemplate.Domain.Entities;
 
@@ -14,25 +12,27 @@ namespace ECTemplate.Domain.Concrete
 
         public IEnumerable<OrderDetails> OrderDetails => context.OrderDetails;
 
-        public void AddOrderDetail(int orderId, Cart cart)
+        public void AddOrderDetail(Orders order, Cart cart)
         {
-            foreach(CartLine cl in cart.Lines)
+            if (order.OrderDetails == null)
+                order.OrderDetails = new List<OrderDetails>();
+
+            foreach (CartLine cl in cart.Lines)
             {
                 OrderDetails orderDetail = new OrderDetails()
                 {
                     DetailId = 0,
-                    DetailOrderId = orderId,
+                    DetailOrderId = order.OrderId,
                     DetailProductId = cl.Product.ProductID,
                     DetailPrice = cl.Product.Price,
                     DetailQuantity = cl.Quantity
                 };
-                context.OrderDetails.Add(orderDetail);
-            }
 
-            context.SaveChanges();
+                order.OrderDetails.Add(orderDetail);
+            }
         }
 
-        public IEnumerable<OrderDetails> GetOrderDetails(int orderId)
+        public IEnumerable<OrderDetails> GetOrderDetails(Guid orderId)
         {
             return OrderDetails.Where(od => Equals(od.DetailOrderId, orderId)).ToList();
         }

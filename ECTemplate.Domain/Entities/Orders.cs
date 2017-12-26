@@ -9,8 +9,7 @@ namespace ECTemplate.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int OrderId { get; set; }
-        public int OrderUserId { get; set; }
+        public Guid OrderId { get; set; }
         public double OrderAmount { get; set; }
         public string OrderShipAddress { get; set; }
         public string OrderShipAddress2 { get; set; }
@@ -18,7 +17,12 @@ namespace ECTemplate.Domain.Entities
         public string OrderState { get; set; }
         public string OrderZip { get; set; }
         public string OrderCountry { get; set; }
+        public string OrderPhone { get; set; }
         public DateTime OrderDate { get; set; }
-        public int OrderShipped { get; set; }
+        public int OrderStatus { get; set; }
+        [ForeignKey("Account")]
+        public int OrderAccount { get; set; }
+        public Accounts Account { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

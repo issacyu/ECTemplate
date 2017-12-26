@@ -6,7 +6,6 @@ using ECTemplate.WebUI.Models;
 using ECTemplate.Domain.Concrete;
 using ECTemplate.Domain.Entities;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace ECTemplate.WebUI.Controllers
 {
@@ -65,8 +64,8 @@ namespace ECTemplate.WebUI.Controllers
 
             Accounts newAccount = new Accounts
             {
-                UserFirstName = "a",
-                UserLastName = "a",
+                UserFirstName = model.UserFirstName,
+                UserLastName = model.UserLastName,
                 UserEmail = model.UserEmail,
                 UserPassword = model.UserPassword,
                 AddressId = addressId,
