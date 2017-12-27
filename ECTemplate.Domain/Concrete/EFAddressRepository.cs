@@ -5,12 +5,34 @@ using ECTemplate.Domain.Entities;
 
 namespace ECTemplate.Domain.Concrete
 {
+    /// <summary>
+    /// The repository class that implements the IAddressRepository interface and uses an instance of
+    /// EFDbContext to retrieve data from the database using the Entity Framework.
+    /// </summary>
     public class EFAddressRepository : IAddressRepository
     {
-        EFDbContext context = new EFDbContext();
+        /// <summary>
+        /// A default constructor that uses to initialize the properties.
+        /// </summary>
+        public EFAddressRepository()
+        {
+            Context = new EFDbContext();
+        }
 
-        public IEnumerable<Addresses> Addresses => context.Addresses;
+        /// <summary>
+        /// Gets or sets the Context.
+        /// </summary>
+        private EFDbContext Context { get; set; }
 
+        /// <summary>
+        /// Gets the address collection.
+        /// </summary>
+        public IEnumerable<Addresses> Addresses => Context.Addresses;
+
+        /// <summary>
+        /// Add the shipping address into the database.
+        /// </summary>
+        /// <param name="shippingAddress">The shipping address that uses to add into the database.</param>
         public void AddShippingAddress(Addresses shippingAddress)
         {
             Addresses dbEntry = new Addresses()
@@ -27,10 +49,15 @@ namespace ECTemplate.Domain.Concrete
                 ShippingPhone = shippingAddress.ShippingPhone
             };
 
-            context.Addresses.Add(dbEntry);
-            context.SaveChanges();
+            Context.Addresses.Add(dbEntry);
+            Context.SaveChanges();
         }
 
+        /// <summary>
+        /// Update an existing shipping address in the database.
+        /// </summary>
+        /// <param name="userId">The user ID that uses to look for the shipping address.</param>
+        /// <param name="shippingAddress">The shipping address that needs to be updated.</param>
         public void UpdateShippingAddress(int userId, Addresses shippingAddress)
         {
             Addresses dbEntry = FindAddress(userId);
@@ -45,12 +72,17 @@ namespace ECTemplate.Domain.Concrete
             dbEntry.ShippingCountry = shippingAddress.ShippingCountry;
             dbEntry.ShippingPhone = shippingAddress.ShippingPhone;
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
+        /// <summary>
+        /// Find the address in the database.
+        /// </summary>
+        /// <param name="userId">The user ID that uses to find the address.</param>
+        /// <returns>The address.</returns>
         public Addresses FindAddress(int userId)
         {
-            return context.Accounts.Include("Address").FirstOrDefault(a => a.UserId == userId).Address;
+            return Context.Accounts.Include("Address").FirstOrDefault(a => a.UserId == userId).Address;
         }
     }
 }

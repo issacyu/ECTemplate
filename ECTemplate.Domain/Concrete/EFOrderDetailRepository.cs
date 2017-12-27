@@ -6,12 +6,35 @@ using ECTemplate.Domain.Entities;
 
 namespace ECTemplate.Domain.Concrete
 {
+    /// <summary>
+    /// The repository class that implements the IOrderDetailRepository interface and uses an instance of
+    /// EFDbContext to retrieve data from the database using the Entity Framework.
+    /// </summary>
     public class EFOrderDetailRepository : IOrderDetailRepository
     {
-        EFDbContext context = new EFDbContext();
+        /// <summary>
+        /// A default constructor that uses to initialize the properties.
+        /// </summary>
+        public EFOrderDetailRepository()
+        {
+            Context = new EFDbContext();
+        }
 
-        public IEnumerable<OrderDetails> OrderDetails => context.OrderDetails;
+        /// <summary>
+        /// Gets or sets the Context.
+        /// </summary>
+        private EFDbContext Context { get; set; }
 
+        /// <summary>
+        /// Gets the order detail collection.
+        /// </summary>
+        public IEnumerable<OrderDetails> OrderDetails => Context.OrderDetails;
+
+        /// <summary>
+        /// Add the order detail into the database.
+        /// </summary>
+        /// <param name="order">Use the order ID of this order as the foreign key of the order details.</param>
+        /// <param name="cart">The shopping cart that contains the order detail.</param>
         public void AddOrderDetail(Orders order, Cart cart)
         {
             if (order.OrderDetails == null)
@@ -32,7 +55,12 @@ namespace ECTemplate.Domain.Concrete
             }
         }
 
-        public IEnumerable<OrderDetails> GetOrderDetails(Guid orderId)
+        /// <summary>
+        /// Find the order detail in the database.
+        /// </summary>
+        /// <param name="orderId">The order ID that uses to find the order detail.</param>
+        /// <returns></returns>
+        public IEnumerable<OrderDetails> FindOrderDetails(Guid orderId)
         {
             return OrderDetails.Where(od => Equals(od.DetailOrderId, orderId)).ToList();
         }

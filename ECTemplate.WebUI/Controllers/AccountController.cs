@@ -185,7 +185,7 @@ namespace ECTemplate.WebUI.Controllers
 
         public PartialViewResult OrderHistory(CurrentUserViewModel currentUser)
         {
-            return PartialView(OrderRepository.GetOrder(currentUser.UserId));
+            return PartialView(OrderRepository.FindOrder(currentUser.UserId));
         }
 
         [HttpPost]
@@ -197,11 +197,11 @@ namespace ECTemplate.WebUI.Controllers
         public PartialViewResult OrderDetail(Orders order)
         {
             OrderDetailViewModel OrderDetail = new OrderDetailViewModel();
-            OrderDetail.OrderDetails = OrderDetailRepository.GetOrderDetails(order.OrderId) as List<OrderDetails>;
+            OrderDetail.OrderDetails = OrderDetailRepository.FindOrderDetails(order.OrderId) as List<OrderDetails>;
             OrderDetail.Order = order; 
             foreach(OrderDetails od in OrderDetail.OrderDetails)
             {
-                OrderDetail.ProductDetails.Add(od.DetailProductId, ProductRepository.GetProduct(od.DetailProductId).Name);
+                OrderDetail.ProductDetails.Add(od.DetailProductId, ProductRepository.FindProduct(od.DetailProductId).Name);
             }
 
             return PartialView(OrderDetail);

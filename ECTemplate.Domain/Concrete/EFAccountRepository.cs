@@ -5,18 +5,40 @@ using ECTemplate.Domain.Entities;
 
 namespace ECTemplate.Domain.Concrete
 {
+    /// <summary>
+    /// The repository class that implements the IAccountRepository interface and uses an instance of
+    /// EFDbContext to retrieve data from the database using the Entity Framework.
+    /// </summary>
     public class EFAccountRepository : IAccountRepository
     {
-        EFDbContext context = new EFDbContext();
+        /// <summary>
+        /// A default constructor that uses to initialize the properties.
+        /// </summary>
+        public EFAccountRepository()
+        {
+            Context = new EFDbContext();
+        }
 
-        public IEnumerable<Accounts> Accounts => context.Accounts;
+        /// <summary>
+        /// Gets or sets the Context.
+        /// </summary>
+        private EFDbContext Context { get; set; }
 
+        /// <summary>
+        /// Gets the account collection.
+        /// </summary>
+        public IEnumerable<Accounts> Accounts => Context.Accounts;
+
+        /// <summary>
+        /// Add the account into the database.
+        /// </summary>
+        /// <param name="Account">The account that uses to add into the database.</param>
         public void AddAccount(Accounts Account)
         {
             if (Account.UserId == 0)
             {
-                context.Accounts.Add(Account);
-                context.SaveChanges();
+                Context.Accounts.Add(Account);
+                Context.SaveChanges();
             }
             else
             {
@@ -31,11 +53,15 @@ namespace ECTemplate.Domain.Concrete
                     AddressId = Account.AddressId
                 };
 
-                context.Accounts.Add(dbEntry);
-                context.SaveChanges();
+                Context.Accounts.Add(dbEntry);
+                Context.SaveChanges();
             }
         }
 
+        /// <summary>
+        /// Update an existing account in the database.
+        /// </summary>
+        /// <param name="account">The account that needs to be updated.</param>
         public void UpdateAccount(Accounts account)
         {
             Accounts dbEntry = FindAccount(account.UserId);
@@ -48,10 +74,15 @@ namespace ECTemplate.Domain.Concrete
                 dbEntry.UserEmail = account.UserEmail;
                 dbEntry.UserPassword = account.UserPassword;
 
-                context.SaveChanges();
+                Context.SaveChanges();
             }
         }
 
+        /// <summary>
+        /// Find the account in the database.
+        /// </summary>
+        /// <param name="userId">The user ID that uses to find the account.</param>
+        /// <returns>The account.</returns>
         public Accounts FindAccount(int userId)
         {
             Accounts dbEntry = Accounts.FirstOrDefault(a => Equals(a.UserId, userId));

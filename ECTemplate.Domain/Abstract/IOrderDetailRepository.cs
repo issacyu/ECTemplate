@@ -23,6 +23,11 @@ namespace ECTemplate.Domain.Abstract
         /// <param name="cart">The shopping cart that conatains the order details.</param>
         void AddOrderDetail(Orders order, Cart cart);
 
-        IEnumerable<OrderDetails> GetOrderDetails(Guid orderId);
+        /// <summary>
+        /// Find the order detail in the database.
+        /// </summary>
+        /// <param name="orderId">The order ID that uses to find the order detail in the database.</param>
+        /// <returns></returns>
+        IEnumerable<OrderDetails> FindOrderDetails(Guid orderId);
     }
 }

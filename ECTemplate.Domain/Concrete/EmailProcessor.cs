@@ -12,21 +12,46 @@ namespace ECTemplate.Domain.Concrete
 {
     public class EmailSettings
     {
+        /// <summary>
+        /// A default constructor that uses to initialize the properties.
+        /// </summary>
+        public EmailSettings() { }
+
+        /// <summary>
+        /// Gets or sets the recipient
+        /// </summary>
         public string MailToAddress { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sender.
+        /// </summary>
         public string MailFromAddress { get; set; }
+
+        /// <summary>
+        /// Gets or sets the write as file.
+        /// </summary>
         public bool WriteAsFile = false;
-        public string FileLocation = @"c:\sports_store_emails";
     }
 
     public class EmailProcessor
     {
         private EmailSettings emailSettings;
 
+        /// <summary>
+        /// An argument constructor that uses to initialize the EmailSettings instance.
+        /// </summary>
+        /// <param name="settings"></param>
         public EmailProcessor(EmailSettings settings)
         {
             emailSettings = settings;
         }
 
+        /// <summary>
+        /// Send an email to the user's account, which contains the item in the shopping cart
+        /// and the shipping information.
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <param name="shippingInfo"></param>
         public void ProcessOrder(Cart cart, Addresses shippingInfo)
         {
                 StringBuilder body = new StringBuilder()
@@ -59,6 +84,9 @@ namespace ECTemplate.Domain.Concrete
             SendMail("New order submitted!", body);
         }
 
+        /// <summary>
+        /// Send an email to the user once the order is shipped.
+        /// </summary>
         public void OrderShipped()
         {
             StringBuilder body = new StringBuilder()
@@ -67,11 +95,21 @@ namespace ECTemplate.Domain.Concrete
             SendMail("Your Order is Shipped!", body);
         }
 
+        /// <summary>
+        /// Allow the user to send an email to contact us.
+        /// </summary>
+        /// <param name="fromUserEmail">The user email.</param>
+        /// <param name="fromUserName">The user name.</param>
         public void Contact(string fromUserEmail, string fromUserName)
         {
 
         }
 
+        /// <summary>
+        /// Send an email to the user.
+        /// </summary>
+        /// <param name="subject">The subject of the email.</param>
+        /// <param name="body">The body of the email.</param>
         public void SendMail(string subject, StringBuilder body)
         {
             using (var smtpClient = new SmtpClient())
@@ -96,7 +134,7 @@ namespace ECTemplate.Domain.Concrete
                 }
                 smtpClient.Send(mailMessage);
             }
-            
+           
         }
     }
 }

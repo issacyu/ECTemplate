@@ -28,6 +28,6 @@ namespace ECTemplate.Domain.Abstract
         /// </summary>
         /// <param name="userId">The user ID.</param>
         /// <returns>The order collecton that relates to the user ID.</returns>
-        IEnumerable<Orders> GetOrder(int userId);
+        IEnumerable<Orders> FindOrder(int userId);
     }
 }
