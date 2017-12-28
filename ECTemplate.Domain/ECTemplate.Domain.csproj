@@ -104,11 +104,9 @@
     <Compile Include="Entities\Accounts.cs" />
     <Compile Include="Entities\Addresses.cs" />
     <Compile Include="Entities\Cart.cs" />
-    <Compile Include="Entities\LookUps.cs" />
     <Compile Include="Entities\OrderDetails.cs" />
     <Compile Include="Entities\Orders.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

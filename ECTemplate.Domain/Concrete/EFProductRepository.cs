@@ -15,13 +15,12 @@ namespace ECTemplate.Domain.Concrete
         /// </summary>
         public EFProductRepository()
         {
-            Context = new EFDbContext();
         }
 
         /// <summary>
         /// Gets or sets the Context.
         /// </summary>
-        private EFDbContext Context { get; set; }
+        private EFDbContext Context = new EFDbContext();
 
         /// <summary>
         /// Gets the product collection.
