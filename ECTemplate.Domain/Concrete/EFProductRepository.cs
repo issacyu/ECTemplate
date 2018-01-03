@@ -20,6 +20,7 @@ namespace ECTemplate.Domain.Concrete
         /// <summary>
         /// Gets or sets the Context.
         /// </summary>
+
         private EFDbContext Context = new EFDbContext();
 
         /// <summary>
