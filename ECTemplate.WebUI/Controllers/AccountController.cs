@@ -245,12 +245,21 @@ namespace ECTemplate.WebUI.Controllers
             return PartialView(OrderRepository.FindOrder(currentUser.UserId));
         }
 
+        /// <summary>
+        /// Display the order history view.
+        /// </summary>
+        /// <returns>The view a list of order histories.</returns>
         [HttpPost]
         public ActionResult OrderHistory()
         {
             return View();
         }
 
+        /// <summary>
+        /// Request the order detail page.
+        /// </summary>
+        /// <param name="order">The order that needs to view the detail.</param>
+        /// <returns>The order detail page with detail of an order.</returns>
         public PartialViewResult OrderDetail(Orders order)
         {
             OrderDetailViewModel OrderDetail = new OrderDetailViewModel();
@@ -264,6 +273,11 @@ namespace ECTemplate.WebUI.Controllers
             return PartialView(OrderDetail);
         }
 
+        /// <summary>
+        /// Display the order detail view.
+        /// </summary>
+        /// <param name="currentUser">The current user.</param>
+        /// <returns>The view with the order detail of an order.</returns>
         [HttpPost]
         public ActionResult OrderDetail(CurrentUserViewModel currentUser)
         {

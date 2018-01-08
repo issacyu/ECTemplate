@@ -28,10 +28,10 @@ namespace ECTemplate.WebUI.Controllers
         private IProductsRepository repository;
 
         /// <summary>
-        /// 
+        /// Request to display the products in a specific category.
         /// </summary>
         /// <param name="category"></param>
-        /// <returns></returns>
+        /// <returns>The products in a specific category.</returns>
         public PartialViewResult Menu(string category = null)
         {
             ViewBag.SelectedCategory = category;
@@ -45,11 +45,11 @@ namespace ECTemplate.WebUI.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Display the top menu and the side bar.
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="cart"></param>
-        /// <returns></returns>
+        /// <param name="user">The current user.</param>
+        /// <param name="cart">The current user's shopping cart.</param>
+        /// <returns>The navigation partial view.</returns>
         public PartialViewResult Navigation(CurrentUserViewModel user, Cart cart)
         {
             IEnumerable<string> categories = repository.Products
