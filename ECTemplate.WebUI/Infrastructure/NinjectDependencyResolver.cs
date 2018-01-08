@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Web.Mvc;
 using Ninject;
 using ECTemplate.Domain.Abstract;
-using ECTemplate.Domain.Entities;
 using ECTemplate.Domain.Concrete;
 using ECTemplate.WebUI.Infrastructure.Abstract;
 using ECTemplate.WebUI.Infrastructure.Concrete;
