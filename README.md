@@ -1,4 +1,7 @@
 # ECTemplate
+
+The project was move to a private repository for security reasons. The project and code here are just a demonstration of an early stage of the project. 
+
 An e-commerce website template to sell products on internet. The website still under development.
 Technologies used: C#, Asp.Net MVC 5, SQL, JavaScript, Bootstrap, HTML, CSS, Visual Studio 2017 and Microsoft SQL Server Management 2017.
 
